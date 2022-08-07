@@ -74,11 +74,21 @@ url_entry = tk.Entry(
 
 )
 
+# second text prompt: 'Enter YouTube URL:'
+outputdir_prompt = tk.Label(
+    main_frame,
+    text="Browse to select the output directory for downloaded files:",
+    bg=bg_color,
+    fg=fg_color,
+    font=("TkMenuFont, 12")
+)
+
 dl_prompt.pack()
 video_rb.pack()
 playlist_rb.pack()
 url_prompt.pack()
 url_entry.pack()
+outputdir_prompt.pack()
 
 ### run the app:
 root.mainloop()
