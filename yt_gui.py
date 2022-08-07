@@ -1,5 +1,13 @@
 import tkinter as tk
+from tkinter import filedialog
 from PIL import ImageTk
+import os
+
+def dir_search(set_dir):
+    cur_dir = os.getcwd()
+    ask_dir = filedialog.askdirectory(parent=root, initialdir=cur_dir)
+    return set_dir.set(ask_dir)
+    
 
 ### initialize the app:
 root = tk.Tk()
@@ -77,10 +85,28 @@ url_entry = tk.Entry(
 # second text prompt: 'Enter YouTube URL:'
 outputdir_prompt = tk.Label(
     main_frame,
-    text="Browse to select the output directory for downloaded files:",
+    text="Select a directory for downloads:",
     bg=bg_color,
     fg=fg_color,
     font=("TkMenuFont, 12")
+)
+
+# Entry widget for text above:
+dir_sv = tk.StringVar()
+dir_entry = tk.Entry(
+    main_frame,
+    textvariable=dir_sv,
+    bg=bg_color,
+    fg=fg_color,
+    width=40,
+    bd=2
+)
+
+browse_btn = tk.Button(
+    main_frame,
+    text="Browse",
+    width=6,
+    command=lambda:dir_search(dir_sv)
 )
 
 dl_prompt.pack()
@@ -89,6 +115,8 @@ playlist_rb.pack()
 url_prompt.pack()
 url_entry.pack()
 outputdir_prompt.pack()
+dir_entry.pack(side=tk.LEFT, padx=2)
+browse_btn.pack(side=tk.LEFT)
 
 ### run the app:
 root.mainloop()
